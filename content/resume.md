@@ -6,6 +6,7 @@ summary: "resume"
 ---
 
 # Mahesh Bhosle
+
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:mahesh22071999@gmail.com)
 [![Phone](https://img.shields.io/badge/Phone-+91%209881666871-blue)](tel:+919881666871)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mahesh%20Bhosle-blue?style=flat&logo=linkedin)](https://linkedin.com/in/mahesh-bhosle-301a3619b)
@@ -16,6 +17,7 @@ summary: "resume"
 ## Experience
 
 ### Codemancers *(01/2024 – Present, Bangalore, India)*  
+
 **DevOps Engineer**
 
 - **Grit Financial**
@@ -63,9 +65,10 @@ enabling centralized monitoring and log aggregation across microservices.
   - Reduced EC2 compute costs by implementing Karpenter to efficiently autoscale workloads on spot
 instances.
 
-
 ### Fantail Tech LLC *(09/2021 – 12/2023, Remote)*  
+
 **DevOps Engineer**
+
 - Designed and implemented a AWS cloud based product architecture achieving 99.9% uptime and
 fault tolerance.
 - Engineered an automated backup and restoration system for Neo4j GraphQL Database servers,
@@ -77,7 +80,6 @@ system performance and reducing incident response time.
 complexity and made platform upgrades easier.
 - Streamlined CI/CD pipelines using Travis CI, enabling automated testing and deployment across
 environments.
-
 
 ---
 

@@ -20,6 +20,7 @@ While this isn’t a strict GitOps setup (which often uses a dedicated operator 
 In this blog, we’ll build a GitHub Actions workflow to automate terraform plan on PRs and terraform apply on merges—bringing reliability and auditability to Terraform deployments. Let’s dive in!
 
 First, Lets understand the folder structure of the GitHub repository.
+
 ```bash
 .
 ├── .github
@@ -32,10 +33,12 @@ First, Lets understand the folder structure of the GitHub repository.
     ├── sandbox
     └── uat
 ```
+
 The `.github` folder is for the GitHub workflows, PR templates, and other stuff,
 The `modules` folder is for terraform modules, and the `terraform` folder will have sub-folders which is used for different environments.
 
 Now, for the GitHub Action to perform the terraform plan for any environment, we must first know where the change was made and run the terraform plan for that particular folder. For the I am using a [`dorny/paths-filter`](https://github.com/dorny/paths-filter) which can find the files that were changed based on given filters.
+
 ```yaml
 - uses: dorny/paths-filter@v3
   id: changes
@@ -56,18 +59,22 @@ Now, for the GitHub Action to perform the terraform plan for any environment, we
     echo "Directories: $DIRS_JSON"
     echo "terraform_dirs_json=$DIRS_JSON" >> $GITHUB_OUTPUT
 ```
+
 Here the first step finds all the files that were modified in the terraform folder and the second step extracts the folder path from the list of modified files.
 
 Now we have the folder where we need to run the terraform plan.
+
 ```yaml
 - name: Terraform plan
   uses: dflook/terraform-plan@v1
   with:
     path: path_to_folder
 ```
+
 Here, we are using [`dflook/terraform-plan`](https://github.com/dflook/terraform-plan) to run the terraform plan and put the terraform plan in the PR message for display.
 
 There were just important bits for the GitHub workflow. Now let's see what the full GitHub workflow looks like.
+
 ```yaml
 name: Terraform format and plan
 
@@ -146,9 +153,11 @@ jobs:
         with:
           path: ${{ matrix.dir }}
 ```
+
 This might look confusing but let me give you the gist of it. We have 2 jobs in workflow, first, `detect_changes` which finds where the changes were made and outputs the folder, then `fmt_plan` which takes the output from the first step and uses matrix strategy and performs terraform format and plans on the output folder path.
 
 Let's see this workflow in action now. I will create a new file `terraform/sandbox/s3.tf` with the following code:
+
 ```tf
 provider "aws" {
   region = "us-east-2"
@@ -160,11 +169,11 @@ module "s3_bucket" {
   versioning  = "Enabled"
 }
 ```
+
 I will commit and push a code to branch s3 and create PR. This will trigger a GitHub action `Terraform format and plan` which will perform terraform format and plan and show the plan if the PR is output. Terraform format [`dflook/terraform-fmt-check`](https://github.com/dflook/terraform-github-actions/tree/main/terraform-fmt-check) is optional but it is always good practice to perform format checks to keep the code format linear.
 
-
-
 To apply the changes I am using similar workflow as previous one with one change i.e. I am using [`dflook/terraform-apply`](https://github.com/dflook/terraform-github-actions/tree/main/terraform-apply) to perform terraform apply. Here is the full workflow.
+
 ```yaml
 name: Terraform Apply
 
@@ -241,7 +250,7 @@ jobs:
         with:
           path: ${{ matrix.dir }}
 ```
-Once the PR is merged `Terraform Apply` workflow is triggered which performs terraform apply.
 
+Once the PR is merged `Terraform Apply` workflow is triggered which performs terraform apply.
 
 By automating Terraform plans on PRs and applies on merges via GitHub Actions, teams gain both efficiency and reliability in infrastructure management. This GitOps-inspired approach enforces version-controlled changes, reduces manual errors, and provides built-in audit trails—all while maintaining the safety of peer reviews. The solution balances automation with control, making it practical for production environments yet simple enough to implement immediately. For teams adopting IaC, this workflow delivers the core benefits of GitOps without requiring complex operators, creating a foundation for scalable, collaborative infrastructure management.

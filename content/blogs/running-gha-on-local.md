@@ -51,6 +51,7 @@ act is available for macOS, Linux, and Windows. It can be installed with package
   ```
 
 - Windows: Download the binary from the releases page, or use Chocolatey:
+
   ```console
   choco install act-cli
   ```
@@ -148,6 +149,7 @@ Stage  Job ID        Job name      Workflow name             Workflow file   Eve
 0      deploy        deploy        Build and Test React App  node.js.yml     push,pull_request
 0      build         build         Build and Test React App  node.js.yml     push,pull_request
 ```
+
 So as per the output, we have 5 jobs out of which 2 jobs belong to **Code Check** workflow and the rest to the **Build and Test React App**.
 
 Lets check all jobs that are triggered for **push** event:
@@ -251,7 +253,8 @@ INFO[0002] Parallel tasks (0) below minimum, setting to 1
 [Code Check/sanity-check] Cleaning up container for job sanity-check
 [Code Check/sanity-check] 🏁  Job succeeded
 ```
-act only ran the **sanity-check** job which not only saves a lot of time but also helps in debugging issues in the workflow jobs because with act it is possible to run each job independently. 
+
+act only ran the **sanity-check** job which not only saves a lot of time but also helps in debugging issues in the workflow jobs because with act it is possible to run each job independently.
 
 ## Tips for Getting the Most Out of act
 
@@ -260,6 +263,7 @@ act only ran the **sanity-check** job which not only saves a lot of time but als
 - **Workflow Selection**: If there are too many workflows in the repository, use **-W** flag to specify the workflow to run.
 
 - **Local Execution**: In case, it is required to run the workflows directly on the host system then use **-P** flag with one of the following parameters:
+
   ```bash
   # TO run the workflow on Linux host
   act -P ubuntu-latest=-self-hosted
