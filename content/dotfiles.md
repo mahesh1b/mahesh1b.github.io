@@ -6,6 +6,7 @@ summary: "dot-files"
 ---
 
 ### .Zshrc
+
 ```sh
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -67,6 +68,7 @@ alias vim=nvim
 ```
 
 ### Ghostty Config
+
 ```conf
 # Theme
 term = xterm-256color
@@ -127,6 +129,7 @@ keybind = ctrl+shift+r=reload_config
 ```
 
 ### k9s Ayu Theme
+
 ```yaml
 # -----------------------------------------------------------------------------
 # K9s Ayu Terminal Matched Theme
