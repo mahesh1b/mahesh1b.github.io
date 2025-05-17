@@ -1,6 +1,6 @@
 ---
 date: '2025-05-16T14:47:56+05:30'
-draft: true
+draft: false
 title: 'Building Custom AWS AMIs With Hashicorp Packer'
 tags: ["packer", "aws", "hcl"]
 cover: 
