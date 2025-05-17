@@ -4,7 +4,7 @@ draft: false
 title: 'Terraform State Migration'
 tags: ["terraform"]
 cover: 
-    image: images/statefile-migration.jpg
+    image: images/tf-state-migration.jpg
     responsiveImages: true
     linkFullImages: true
 ---
