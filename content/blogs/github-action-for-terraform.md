@@ -4,7 +4,7 @@ draft: false
 title: 'GitHub Action to Automate Terraform Plan and Apply'
 tags: ["github", "cicd", "terraform"]
 cover: 
-    image: images/gha-for-terraform.jpg
+    image: images/tf-lifecycle-with-gha.jpg
     responsiveImages: true
     linkFullImages: true
 ---

@@ -4,7 +4,7 @@ draft: false
 title: 'Hashicorp Vault on Azure AKS'
 tags: ["vault", "Azure", "terraform", "AKS"]
 cover: 
-    image: images/hashicorp-vault-on-azure.jpg
+    image: images/vault-on-aks.jpg
     responsiveImages: true
     linkFullImages: true
 ---

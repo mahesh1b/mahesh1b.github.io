@@ -4,7 +4,7 @@ draft: false
 title: 'Running GitHub Actions on Local'
 tags: ["github", "cicd"]
 cover: 
-    image: images/gha-on-local.jpg
+    image: images/github-actions-on-local-with-act.jpg
     responsiveImages: true
     linkFullImages: true
 ---
