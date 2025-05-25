@@ -38,13 +38,13 @@ params:
 
 menu:
   main:
-    - identifier: about me
-      name: about me
-      url: /about-me/
-      weight: 10
     - identifier: blogs
       name: blogs
       url: /blogs/
+      weight: 10
+    - identifier: about me
+      name: about me
+      url: /about-me/
       weight: 20
     - identifier: Resume
       name: resume
