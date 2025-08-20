@@ -3,22 +3,35 @@ title: "Resume"
 layout: "resume"
 url: /resume/
 summary: "resume"
----
-
-# Mahesh Bhosle
-
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:mahesh22071999@gmail.com)
-[![Phone](https://img.shields.io/badge/Phone-+91%209881666871-blue)](tel:+919881666871)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mahesh%20Bhosle-blue?style=flat&logo=linkedin)](https://linkedin.com/in/mahesh-bhosle-301a3619b)
-[![GitHub](https://img.shields.io/badge/GitHub-mahesh1b-black?style=flat&logo=github)](https://github.com/mahesh1b/)
-
+name: "Mahesh Bhosle"
+certificates:
+  - image: "/images/badges/hashicorp-certified-terraform-associate-003.png"
+    alt: "HashiCorp Certified: Terraform Associate"
+    title: "HashiCorp Certified: Terraform Associate"
+  - image: "/images/badges/cka_from_cncfsite__281_29.png"
+    alt: "Certified Kubernetes Administrator"
+    title: "Certified Kubernetes Administrator (CKA)"
+  - image: "/images/badges/aws-certified-solutions-architect-associate.png"
+    alt: "AWS Certified Solutions Architect – Associate"
+    title: "AWS Certified Solutions Architect – Associate"
+  - image: "/images/badges/aws-certified-security-specialty.png"
+    alt: "AWS Certified Security Specialty"
+    title: "AWS Certified Security Specialty"
+  - image: "/images/badges/aws-certified-cloud-practitioner.png"
+    alt: "AWS Certified Cloud Practitioner"
+    title: "AWS Certified Cloud Practitioner"
+  - image: "/images/badges/microsoft-certified-azure-fundamentals.png"
+    alt: "Microsoft Certified: Azure Fundamentals"
+    title: "Microsoft Certified: Azure Fundamentals"
+  - image: "/images/badges/rhcsa.png"
+    alt: "Red Hat Certified System Administrator"
+    title: "Red Hat Certified System Administrator (RHCSA)"
 ---
 
 ## WORK EXPERIENCE
 
-### Codemancers *(01/2024 – Present, Bangalore, India)*  
-
-**DevOps Engineer**
+### Codemancers
+**DevOps Engineer** | *01/2024 – Present, Bangalore, India*
 - Designed and implemented fault-tolerant, highly available AWS/Azure infrastructure using
 Terraform and Ansible, improving deployment accuracy, reducing configuration drift, and
 accelerating rollout times, while integrating Vanta for continuous compliance monitoring to
@@ -41,9 +54,8 @@ autoscaling, CloudNativePG for database operations, fck-nat for cost-efficient n
 Actions Runner Controller for CI/CD scalability, and External Secrets Operator for secure secret
 management.
 
-### Fantail Tech LLC *(09/2021 – 12/2023, Remote)*  
-
-**DevOps Engineer**
+### Fantail Tech LLC
+**DevOps Engineer** | *09/2021 – 12/2023, Remote*
 
 - Designed and implemented a AWS cloud based product architecture achieving 99.9% uptime and fault tolerance.
 - Engineered an automated backup and restoration system for Neo4j GraphQL Database servers, drastically reducing recovery time.
@@ -54,7 +66,7 @@ management.
 
 ---
 
-## KNOWLEDGE/SKILLS
+## SKILLS
 
 | Category                | Tools & Technologies |
 |-------------------------|---------------------|
@@ -73,12 +85,7 @@ management.
 
 ## CERTIFICATES
 
-- Certified Kubernetes Administrator
-- AWS Certified Solutions Architect – Associate
-- AWS Certified Security Specialty
-- AWS Certified Cloud Practitioner
-- Red Hat Certified System Administrator (RHCSA)
-- Microsoft Certified Azure Fundamentals
+{{< certificates >}}
 
 ---
 

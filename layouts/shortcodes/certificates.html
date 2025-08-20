@@ -1,0 +1,9 @@
+{{- if .Page.Params.certificates }}
+<div class="certificates-badges">
+    {{- range .Page.Params.certificates }}
+    <div class="cert-image-badge">
+        <img src="{{ .image }}" alt="{{ .alt }}" title="{{ .title }}">
+    </div>
+    {{- end }}
+</div>
+{{- end }}

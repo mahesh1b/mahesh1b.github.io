@@ -1,0 +1,627 @@
+{{- define "main" }}
+<article class="post-single">
+    <header class="post-header">
+        <div class="breadcrumbs">
+            <a href="{{ .Site.BaseURL }}">Home</a>&nbsp;»&nbsp;<span>{{ .Title }}</span>
+        </div>
+        <h1 class="post-title">
+            {{ .Params.name | default "Mahesh Bhosle" }}
+        </h1>
+        <div class="post-description">DevOps Engineer</div>
+        <div class="post-meta">
+            <div class="contact-links">
+                <a href="mailto:mahesh22071999@gmail.com" class="contact-link" data-copy="mahesh22071999@gmail.com"
+                    onclick="copyToClipboard(event, this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="contact-icon">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <span class="contact-text">Email</span>
+                </a>
+
+                <a href="https://linkedin.com/in/mahesh-bhosle-301a3619b" target="_blank" class="contact-link"
+                    data-copy="https://linkedin.com/in/mahesh-bhosle-301a3619b" onclick="copyToClipboard(event, this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="contact-icon">
+                        <path fill-rule="evenodd"
+                            d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="contact-text">LinkedIn</span>
+                </a>
+                <a href="https://github.com/mahesh1b/" target="_blank" class="contact-link"
+                    data-copy="https://github.com/mahesh1b/" onclick="copyToClipboard(event, this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="contact-icon">
+                        <path fill-rule="evenodd"
+                            d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="contact-text">GitHub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="post-content collapsible-content">
+        {{ .Content }}
+    </div>
+
+    <footer class="post-footer">
+        <div class="share-buttons">
+            <a href="javascript:void(0);" onclick="copyPageURL()" class="share-button" title="Share Resume">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z">
+                    </path>
+                </svg>
+                Share
+            </a>
+        </div>
+    </footer>
+</article>
+
+<style>
+    /* Center the header content */
+    .post-header {
+        text-align: center;
+    }
+
+    .post-title {
+        text-align: center;
+    }
+
+    .post-description {
+        text-align: center;
+    }
+
+    .post-meta {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+
+
+
+
+    /* Collapsible sections */
+    .collapsible-content>h2 {
+        display: none;
+    }
+
+    .collapsible-section {
+        background: var(--theme);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        overflow: hidden;
+    }
+
+    .collapsible-section details {
+        margin: 0;
+    }
+
+    .section-header {
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        background: var(--code-bg);
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: background 0.3s ease;
+        margin: 0;
+    }
+
+    .section-header:hover {
+        background: var(--hljs-bg);
+    }
+
+    .section-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .section-toggle::before {
+        content: "▶";
+        font-size: 0.875rem;
+        transition: transform 0.3s ease;
+        color: var(--primary);
+    }
+
+    .collapsible-section details[open] .section-toggle::before {
+        transform: rotate(90deg);
+    }
+
+    .section-content {
+        padding: 1.5rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .section-content h3 {
+        color: var(--primary);
+        margin: 1.5rem 0 0.75rem 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .section-content h4 {
+        color: var(--secondary);
+        margin: 1rem 0 0.5rem 0;
+        font-weight: 600;
+    }
+
+    .section-content ul {
+        margin: 0.5rem 0 1rem 1.5rem;
+    }
+
+    .section-content li {
+        margin: 0.3rem 0;
+    }
+
+    .section-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        border-radius: 6px;
+    }
+
+    .section-content th,
+    .section-content td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .section-content th {
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .section-content tr:hover {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    /* Post footer */
+    .post-footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+
+
+    /* Share buttons */
+    .share-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .share-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--theme);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .share-button:hover {
+        background: var(--primary);
+        color: var(--theme);
+        transform: translateY(-1px);
+    }
+
+    .share-button svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Contact links styling */
+    .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--theme);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+        background: var(--primary);
+        color: var(--theme);
+        transform: translateY(-1px);
+    }
+
+    .contact-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Certificate badges */
+    .certificates-badges {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .cert-image-badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background: var(--theme);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        width: 100%;
+        height: 180px;
+        min-height: 180px;
+    }
+
+    .cert-image-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary);
+    }
+
+    .cert-image-badge img {
+        max-width: 140px;
+        max-height: 140px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .cert-image-badge:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Special handling for RHCSA badge - center on new line */
+    .cert-image-badge:nth-child(7) {
+        grid-column: 1 / -1;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .contact-links {
+            justify-content: center;
+        }
+
+
+
+        .post-meta {
+            gap: 0.75rem;
+        }
+
+        .section-header {
+            padding: 0.75rem 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+        }
+
+        .section-content {
+            padding: 1rem;
+        }
+
+        .collapsible-section {
+            margin: 1rem 0;
+        }
+
+        .post-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+        }
+
+        .share-buttons {
+            justify-content: center;
+        }
+
+        .certificates-badges {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .cert-image-badge {
+            height: 160px;
+            min-height: 160px;
+        }
+
+        .cert-image-badge img {
+            max-width: 120px;
+            max-height: 120px;
+        }
+
+        .cert-image-badge:nth-child(7) {
+            grid-column: span 2;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-links {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-link {
+            width: auto;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .certificates-badges {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .cert-image-badge {
+            height: 140px;
+            min-height: 140px;
+        }
+
+        .cert-image-badge img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .cert-image-badge:nth-child(7) {
+            grid-column: 1;
+        }
+
+        .section-header {
+            padding: 0.5rem 0.75rem;
+        }
+
+        .section-header h2 {
+            font-size: 1rem;
+        }
+
+        .section-content {
+            padding: 0.75rem;
+        }
+    }
+
+    /* Copy notification */
+    .copy-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--primary);
+        color: var(--theme);
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+    }
+
+    .copy-notification.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Contact link hover state with copy hint */
+    .contact-link {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .contact-link:hover::after {
+        content: 'Click to copy';
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: var(--theme);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        opacity: 0.9;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    @media (max-width: 480px) {
+        .copy-notification {
+            top: 10px;
+            right: 10px;
+            left: 10px;
+            text-align: center;
+        }
+
+        .contact-link:hover::after {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    function copyToClipboard(event, element) {
+        event.preventDefault();
+
+        const textToCopy = element.getAttribute('data-copy');
+        const contactType = element.querySelector('.contact-text').textContent;
+
+        // Try to use the modern clipboard API
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopyNotification('Copied to clipboard');
+            }).catch(() => {
+                fallbackCopyTextToClipboard(textToCopy);
+            });
+        } else {
+            // Fallback for older browsers or non-secure contexts
+            fallbackCopyTextToClipboard(textToCopy);
+        }
+    }
+
+    function fallbackCopyTextToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopyNotification('Copied to clipboard');
+            } else {
+                showCopyNotification('Failed to copy');
+            }
+        } catch (err) {
+            showCopyNotification('Failed to copy');
+        }
+
+        document.body.removeChild(textArea);
+    }
+
+    function showCopyNotification(message) {
+        // Remove any existing notification
+        const existingNotification = document.querySelector('.copy-notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+
+        // Create new notification
+        const notification = document.createElement('div');
+        notification.className = 'copy-notification';
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Trigger animation
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    function copyPageURL() {
+        const url = window.location.href;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url).then(() => {
+                showCopyNotification('Resume URL copied to clipboard');
+            }).catch(() => {
+                fallbackCopyTextToClipboard(url);
+            });
+        } else {
+            fallbackCopyTextToClipboard(url);
+        }
+    }
+
+    // Make sections collapsible
+    document.addEventListener('DOMContentLoaded', function () {
+        const content = document.querySelector('.post-content');
+        if (!content) return;
+
+        // Find all h2 elements and convert them to collapsible sections
+        const h2Elements = content.querySelectorAll('h2');
+
+        h2Elements.forEach(function (h2) {
+            const section = document.createElement('div');
+            section.className = 'collapsible-section';
+
+            const details = document.createElement('details');
+            details.open = true;
+
+            const summary = document.createElement('summary');
+            summary.className = 'section-header';
+
+            const toggle = document.createElement('span');
+            toggle.className = 'section-toggle';
+
+            const title = document.createElement('h2');
+            title.textContent = h2.textContent;
+
+            summary.appendChild(toggle);
+            summary.appendChild(title);
+
+            const sectionContent = document.createElement('div');
+            sectionContent.className = 'section-content';
+
+            // Move content between this h2 and the next h2 (or end of content)
+            let nextElement = h2.nextElementSibling;
+            const elementsToMove = [];
+
+            while (nextElement && nextElement.tagName !== 'H2') {
+                elementsToMove.push(nextElement);
+                nextElement = nextElement.nextElementSibling;
+            }
+
+            // Move elements to section content
+            elementsToMove.forEach(function (element) {
+                sectionContent.appendChild(element);
+            });
+
+            details.appendChild(summary);
+            details.appendChild(sectionContent);
+            section.appendChild(details);
+
+            // Replace the h2 with the collapsible section
+            h2.parentNode.replaceChild(section, h2);
+        });
+    });
+</script>
+{{- end }}
