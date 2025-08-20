@@ -34,8 +34,8 @@ params:
 
   assets: 
       disableHLJS: true 
-      favicon: "assets/psyduck.svg" 
-
+      favicon: "assets/psyduck.svg"
+  
 menu:
   main:
     - identifier: blogs

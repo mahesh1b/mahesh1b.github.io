@@ -3,82 +3,86 @@ title: "Resume"
 layout: "resume"
 url: /resume/
 summary: "resume"
----
-
-# Mahesh Bhosle
-
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:mahesh22071999@gmail.com)
-[![Phone](https://img.shields.io/badge/Phone-+91%209881666871-blue)](tel:+919881666871)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mahesh%20Bhosle-blue?style=flat&logo=linkedin)](https://linkedin.com/in/mahesh-bhosle-301a3619b)
-[![GitHub](https://img.shields.io/badge/GitHub-mahesh1b-black?style=flat&logo=github)](https://github.com/mahesh1b/)
-
+name: "Mahesh Bhosle"
+certificates:
+  - image: "/images/badges/hashicorp-certified-terraform-associate-003.png"
+    alt: "HashiCorp Certified: Terraform Associate"
+    title: "HashiCorp Certified: Terraform Associate"
+  - image: "/images/badges/cka_from_cncfsite__281_29.png"
+    alt: "Certified Kubernetes Administrator"
+    title: "Certified Kubernetes Administrator (CKA)"
+  - image: "/images/badges/aws-certified-solutions-architect-associate.png"
+    alt: "AWS Certified Solutions Architect – Associate"
+    title: "AWS Certified Solutions Architect – Associate"
+  - image: "/images/badges/aws-certified-security-specialty.png"
+    alt: "AWS Certified Security Specialty"
+    title: "AWS Certified Security Specialty"
+  - image: "/images/badges/aws-certified-cloud-practitioner.png"
+    alt: "AWS Certified Cloud Practitioner"
+    title: "AWS Certified Cloud Practitioner"
+  - image: "/images/badges/microsoft-certified-azure-fundamentals.png"
+    alt: "Microsoft Certified: Azure Fundamentals"
+    title: "Microsoft Certified: Azure Fundamentals"
+  - image: "/images/badges/rhcsa.png"
+    alt: "Red Hat Certified System Administrator"
+    title: "Red Hat Certified System Administrator (RHCSA)"
 ---
 
 ## WORK EXPERIENCE
 
-### Codemancers *(01/2024 – Present, Bangalore, India)*  
+### Codemancers
+**DevOps Engineer** | *01/2024 – Present, Bangalore, India*
 
-**DevOps Engineer**
-- Designed and implemented fault-tolerant, highly available AWS/Azure infrastructure using
-Terraform and Ansible, improving deployment accuracy, reducing configuration drift, and
-accelerating rollout times, while integrating Vanta for continuous compliance monitoring to
-support SOC 2 and ISO 27001 standards.
-- Developed CI/CD pipelines using GitHub Actions, Argo CD, Gitlab CI and custom Helm charts to
-automate deployment, testing, and rollback of Kubernetes applications, improving developer
-velocity, deployment consistency, and reducing configuration errors.
-- Deployed and managed a monitoring stack using Prometheus, Loki and Grafana across multiple
-EKS clusters, improving observability; additionally, replaced traditional block storage for timeseries data with S3-backed object storage using Grafana Mimir, resulting in improved scalability
-and cost efficiency.
-- Enhanced infrastructure security by implementing Netbird VPN with Google SSO for secure remote
-access and replacing long-lived credentials with temporary ones using OIDC, IRSA, Pod Identity,
-and HashiCorp Vault to strengthen compliance and access control.
-- Collaborated cross-functionally with developers, QA, and product teams to streamline release
-processes, reduce deployment time, and improve delivery frequency and reliability.
-- Performed seamless EKS cluster upgrades to maintain a secure, up-to-date Kubernetes
-environment.
-- Led the implementation of cloud-native technologies, including Karpenter for Kubernetes
-autoscaling, CloudNativePG for database operations, fck-nat for cost-efficient networking, GitHub
-Actions Runner Controller for CI/CD scalability, and External Secrets Operator for secure secret
-management.
+- Led end-to-end infrastructure design and implementation for enterprise clients, resulting in successful deployments across AWS
+and Azure environments.
+- Standardized the infrastructure deployment, which reduced infrastructure deployment 40% faster, auditable, and predictable by
+implementing Infrastructure as Code (IaC) with Terraform.
+- Leveraged Terraform modules to create reusable components to build SOC2 and ISO-compliant cloud environments on AWS and
+Azure that improved operational efficiency.
+- Created centralized identity management, which reduced access request overhead by 50%, improved security, and centralized
+Audit and compliance by implementing Keycloak with Single Sign-On (SSO) and Role-Based Access Control (RBAC).
+- Optimized Kubernetes cluster performance by implementing node pool segregation based on application types, improving resource
+utilization by 40%.
+- Established and standardized CI/CD pipelines using GitHub Actions, GitLab CI, and Argo CD, reducing deployment time, better
+visualizing credibility, and minimizing manual interventions.
+- Built a centralized, multi-tenant observability system for microservices th
 
-### Fantail Tech LLC *(09/2021 – 12/2023, Remote)*  
+### Fantail Tech LLC
+**DevOps Engineer** | *09/2021 – 12/2023, Remote*
 
-**DevOps Engineer**
-
-- Designed and implemented a AWS cloud based product architecture achieving 99.9% uptime and fault tolerance.
-- Engineered an automated backup and restoration system for Neo4j GraphQL Database servers, drastically reducing recovery time.
-- Implemented CloudWatch and New Relic monitoring solutions, achieving better visibility into system performance and reducing incident response time.
-- Implemented Snyk code review in CI pipeline to identify and fix security vulnerabilities in code.
-- Migrated the Monolithic Alfresco Content Services Alfresco app to Docker Compose which reduced complexity and made platform upgrades easier.
-- Streamlined CI/CD pipelines using Travis CI, enabling automated testing and deployment across environments.
-
+- Designed and implemented a highly available, fault-tolerant product architecture on AWS, achieving 99.9% uptime and ensuring
+business continuity through resilient system design.
+- Developed an automated backup and disaster recovery solution for Neo4j GraphQL database servers, significantly reducing
+recovery time (RTO) and minimizing data loss risk (RPO).
+- Integrated CloudWatch and New Relic for comprehensive monitoring, logging, and alerting, improving system visibility and
+reducing incident response time by 40%.
+- Authored detailed technical documentation and operational runbooks for deployment and troubleshooting processes, cutting
+onboarding time for new team members by 50%.
+- Enhanced CI/CD pipeline security by integrating Snyk for automated code and dependency scanning, enabling early detection
+and remediation of vulnerabilities.
+- Containerized a monolithic Alfresco Content Services application using Docker and Docker Compose, reducing environment
+inconsistencies, simplifying deployments, and streamlining future platform upgrades.
 ---
 
-## KNOWLEDGE/SKILLS
+## SKILLS
 
 | Category                | Tools & Technologies |
 |-------------------------|---------------------|
-| **Containerization** | Docker, Containerd, Podman |
-| **Kubernetes** |EKS, AKS |
-| **Version Control** | GitHub, Bitbucket, Gitlab |
-| **Linux Administration** | RHEL, CentOS, Amazon Linux, Ubuntu |
-| **CI/CD Tools** | GitHub Actions, Argo CD, Gitlab CI, Travis CI, Bitbucket CI, Jenkins |
-| **Monitoring & Logging** | Prometheus, Grafana, Loki, Sentry, UptimeRobot/UptimeKuma, New Reli |
-| **Scripting** | Bash, Ansible, Python, Go |
-| **Cloud Platforms** | Amazon Web Services(AWS), Microsoft Azure |
-| **Infrastructure as Code** | Terraform, Packer |
-| **Secret Management** | Hashicorp Vault, AWS Secret Manager, External Secret Operator |
+| **Cloud Platforms** | AWS (EC2, ALB, S3, RDS, IAM, CloudWatch, Cognito, EKS, CloudFront, WAF, Lambda, GuardDuty, SES, SNS, VPC, Route53, Firehose, Organizations), Microsoft Azure (AKS, Blob Storage, Monitor, Vnet, Key Vault, Active Directory, Managed Identity) |
+| **Containerization & Orchestration** | Docker, Containerd, Podman, Kubernetes (EKS, AKS), Helm |
+| **Automation** | Terraform, Packer and Ansible |
+| **CI/CD** | GitHub Actions, GitLab CI, Argo CD, Jenkins, Travis CI, Bitbucket CI, GitOps |
+| **Monitoring & Observability** |Prometheus, Grafana, Loki, Tempo, Mimir, ELK Stack (Elasticsearch, Logstash, Kibana), New Relic, UptimeRobot, UptimeKuma, Sentry, SonarQube |
+| **Secrets & Configuration Management** | HashiCorp Vault, AWS Secrets Manager, Vault Secrets Operator, External Secrets Operator |
+| **Gateway/Ingress** | AWS ALB/NLB, AWS API Gateway, Ingress Nginx, Kong |
+| **Operating Systems** | Linux (RHEL, CentOS, Amazon Linux, Ubuntu |
+| **Scripting** | Bash, Python, Go |
 
 ---
 
 ## CERTIFICATES
 
-- Certified Kubernetes Administrator
-- AWS Certified Solutions Architect – Associate
-- AWS Certified Security Specialty
-- AWS Certified Cloud Practitioner
-- Red Hat Certified System Administrator (RHCSA)
-- Microsoft Certified Azure Fundamentals
+{{< certificates >}}
 
 ---
 
