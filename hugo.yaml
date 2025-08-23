@@ -42,23 +42,23 @@ menu:
       name: blogs
       url: /blogs/
       weight: 10
+    - identifier: tldr
+      name: tldr
+      url: /tldr/
+      weight: 20
     - identifier: about me
       name: about me
       url: /about-me/
-      weight: 20
+      weight: 30
     - identifier: Resume
       name: resume
       url: /resume/
-      weight: 30
+      weight: 40
     - identifier: Tags
       name: tags
       url: /tags/
-      weight: 40
-    # - identifier: wallpapers
-    #   name: wallpapers
-    #   url: /wallpapers/
-    #   weight: 50 
+      weight: 50
     - identifier: dotfiles
       name: dotfiles
       url: /dot-files/
-      weight: 50
+      weight: 60
