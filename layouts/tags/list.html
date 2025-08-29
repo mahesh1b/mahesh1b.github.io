@@ -1,0 +1,320 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  <div class="post-description">Interactive mind map of all tags</div>
+</header>
+
+<div id="mindmap-container" style="width: 100%; height: 600px; border: 1px solid var(--border); border-radius: 8px; margin: 20px 0;"></div>
+
+<style>
+.node {
+  cursor: pointer;
+  stroke: var(--border);
+  stroke-width: 2px;
+}
+
+.node.post {
+  stroke-width: 2px;
+  stroke: #374151;
+  opacity: 0.9;
+}
+
+.node.post:hover {
+  stroke-width: 3px;
+  stroke: #1f2937;
+  opacity: 1;
+}
+
+.node.blogs {
+  fill: #3b82f6 !important;
+}
+
+.node.tldr {
+  fill: #f59e0b !important;
+}
+
+.node.default {
+  fill: #6b7280 !important;
+}
+
+.link {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 2px;
+}
+
+.node-text {
+  font-family: var(--font);
+  font-size: 12px;
+  fill: var(--content);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.node-text.center {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 12px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1000;
+  min-width: 200px;
+  max-width: 350px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  line-height: 1.4;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.tooltip div {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+</style>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+// Prepare data from Hugo - collect all posts with their tags
+const allPosts = [
+  {{- range $pages := .Site.RegularPages }}
+  {{- if .Params.tags }}
+  {
+    title: "{{ .Title }}",
+    url: "{{ .Permalink }}",
+    tags: [{{ range .Params.tags }}"{{ . }}",{{ end }}],
+    section: "{{ .Section }}"
+  },
+  {{- end }}
+  {{- end }}
+];
+
+// Create content network map
+function createMindMap() {
+  console.log("All posts data:", allPosts);
+  
+  const container = d3.select("#mindmap-container");
+  const width = container.node().getBoundingClientRect().width;
+  const height = 600;
+  
+  const svg = container.append("svg")
+    .attr("width", width)
+    .attr("height", height);
+  
+  const g = svg.append("g");
+  
+  // Add zoom behavior
+  const zoom = d3.zoom()
+    .scaleExtent([0.5, 3])
+    .on("zoom", (event) => {
+      g.attr("transform", event.transform);
+    });
+  
+  svg.call(zoom);
+  
+  // Create nodes for each post
+  const nodes = allPosts.map((post, i) => ({
+    id: `post-${i}`,
+    title: post.title,
+    url: post.url,
+    tags: post.tags,
+    section: post.section,
+    type: "post"
+  }));
+  
+  // Create links between posts that share tags
+  const links = [];
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const sharedTags = nodes[i].tags.filter(tag => nodes[j].tags.includes(tag));
+      if (sharedTags.length > 0) {
+        links.push({
+          source: nodes[i].id,
+          target: nodes[j].id,
+          sharedTags: sharedTags,
+          strength: sharedTags.length
+        });
+      }
+    }
+  }
+  
+  // Create force simulation
+  const simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(d => Math.max(80, 150 - (d.strength * 20))))
+    .force("charge", d3.forceManyBody().strength(-400))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collision", d3.forceCollide().radius(35));
+  
+  // Create links
+  const link = g.append("g")
+    .selectAll("line")
+    .data(links)
+    .enter().append("line")
+    .attr("class", "link")
+    .attr("stroke-width", d => Math.max(1, d.strength * 2))
+    .attr("stroke-opacity", d => Math.min(1, 0.3 + (d.strength * 0.2)));
+  
+  // Create nodes
+  const node = g.append("g")
+    .selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+    .attr("class", d => `node ${d.type} ${d.section || 'default'}`)
+    .attr("r", d => Math.max(12, Math.min(20, d.tags.length * 2 + 8)))
+    .attr("fill", d => {
+      // Color by section with fallback colors
+      const colors = {
+        "blogs": "#3b82f6",     // Blue
+        "tldr": "#f59e0b",      // Orange  
+        "default": "#6b7280"    // Gray
+      };
+      console.log(`Post: ${d.title}, Section: ${d.section}, Color: ${colors[d.section] || colors.default}`);
+      return colors[d.section] || colors.default;
+    })
+    .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended))
+    .on("mouseover", showTooltip)
+    .on("mouseout", hideTooltip)
+    .on("click", handleClick);
+  
+  // Create labels
+  const labels = g.append("g")
+    .selectAll("text")
+    .data(nodes)
+    .enter().append("text")
+    .attr("class", "node-text")
+    .attr("font-size", "10px")
+    .text(d => {
+      // Truncate long titles
+      const maxLength = 20;
+      return d.title.length > maxLength ? d.title.substring(0, maxLength) + "..." : d.title;
+    });
+  
+  // Tooltip
+  const tooltip = d3.select("#tooltip");
+  
+  function showTooltip(event, d) {
+    const tagsList = d.tags.join(', ');
+    const connectedPosts = links
+      .filter(link => link.source.id === d.id || link.target.id === d.id)
+      .map(link => {
+        const otherPost = link.source.id === d.id ? link.target : link.source;
+        return `• ${otherPost.title} (${link.sharedTags.join(', ')})`;
+      })
+      .join('<br>');
+    
+    tooltip.style("opacity", 1)
+      .html(`
+        <div style="margin-bottom: 8px; white-space: nowrap;"><strong>${d.title}</strong></div>
+        <div style="margin-bottom: 8px; white-space: nowrap;">Section: ${d.section}</div>
+        <div style="margin-bottom: 8px; font-size: 11px; white-space: normal; word-wrap: break-word;">
+          <strong>Tags:</strong> ${tagsList}
+        </div>
+        ${connectedPosts ? `
+        <div style="margin-bottom: 8px; font-size: 10px; white-space: normal; word-wrap: break-word;">
+          <strong>Connected to:</strong><br>${connectedPosts}
+        </div>
+        ` : ''}
+        <div style="font-style: italic; font-size: 10px; white-space: nowrap;">Click to read post</div>
+      `)
+      .style("left", (event.pageX + 10) + "px")
+      .style("top", (event.pageY - 10) + "px");
+  }
+  
+  function hideTooltip() {
+    tooltip.style("opacity", 0);
+  }
+  
+  function handleClick(event, d) {
+    window.location.href = d.url;
+  }
+  
+  // Update positions on simulation tick
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
+    
+    node
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y);
+    
+    labels
+      .attr("x", d => d.x)
+      .attr("y", d => d.y + 4);
+  });
+  
+  // Drag functions
+  function dragstarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+  
+  function dragended(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    if (d.type !== "center") {
+      d.fx = null;
+      d.fy = null;
+    }
+  }
+}
+
+// Initialize mind map when page loads
+document.addEventListener("DOMContentLoaded", createMindMap);
+
+// Handle window resize
+window.addEventListener("resize", () => {
+  d3.select("#mindmap-container svg").remove();
+  createMindMap();
+});
+</script>
+
+<div class="post-content" style="margin-top: 30px;">
+  <h3>How to use the content network:</h3>
+  <ul>
+    <li><strong>Hover</strong> over post nodes to see tags and connections</li>
+    <li><strong>Click</strong> on any post to read the full content</li>
+    <li><strong>Drag</strong> nodes to rearrange the network</li>
+    <li><strong>Zoom</strong> and pan to explore connections</li>
+    <li><strong>Node size</strong> represents the number of tags on that post</li>
+    <li><strong>Line thickness</strong> shows how many tags are shared between posts</li>
+    <li><strong>Colors:</strong> Blue = Blogs, Orange = TLDR guides</li>
+  </ul>
+  
+  <h3>All Tags:</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+    {{- range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" 
+       style="display: inline-block; padding: 5px 10px; background: var(--code-bg); 
+              border: 1px solid var(--border); border-radius: 15px; 
+              text-decoration: none; font-size: 14px;">
+      {{ $name }} ({{ len $taxonomy }})
+    </a>
+    {{- end }}
+  </div>
+</div>
+
+{{- end }}{{/* end main */}}
